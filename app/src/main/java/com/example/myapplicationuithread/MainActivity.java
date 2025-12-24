@@ -6,6 +6,8 @@ import android.os.Looper;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     // Tham chiếu tới các view
     private MaterialButton btnBlockUi;
     private MaterialButton btnUseBackgroundThread;
+    private MaterialButton btnCheckLag;
     private ProgressBar progressBar;
     private TextView tvResult;
 
@@ -32,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // EdgeToEdge.enable(this); // Gây ra lỗi nếu dependency không chính xác
         setContentView(R.layout.activity_main);
 
         // Setup insets cho view gốc (id = main)
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         // Ánh xạ view
         btnBlockUi = findViewById(R.id.btnBlockUi);
         btnUseBackgroundThread = findViewById(R.id.btnUseBackgroundThread);
+        btnCheckLag = findViewById(R.id.btnCheckLag);
         progressBar = findViewById(R.id.progressBar);
         tvResult = findViewById(R.id.tvResult);
 
@@ -54,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Nút ví dụ ĐÚNG: Tác vụ nặng chạy bằng ExecutorService
         btnUseBackgroundThread.setOnClickListener(v -> demoBackgroundThread());
+
+        // Nút kiểm tra lag
+        btnCheckLag.setOnClickListener(v -> {
+            Toast.makeText(this, "UI vẫn phản hồi!", Toast.LENGTH_SHORT).show();
+        });
     }
 
     /**
